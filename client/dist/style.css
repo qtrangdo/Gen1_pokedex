@@ -6,3 +6,36 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+h1 {
+  text-shadow: 2px 0 black;
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 700;
+  color: rgb(105, 90, 202);
+}
+
+img {
+  height: 15rem;
+  width: auto;
+  padding: 2rem
+}
+
+.card-bg {
+  background: linear-gradient(to bottom, #ccccff 0%, #ffccff 100%);
+  border-radius: 5%;
+  box-shadow: 5px 5px #c2c2fc;
+  transform:  scale(0.98);
+  transition: transform 0.8s;
+}
+
+.card-bg:hover {
+  cursor: pointer;
+  transform: scale(1.03)
+}
+
+hr {
+  border-top: 2px solid rgba(22, 22, 22, 0.1);
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
 import requestAllMons from '../actions/actions';
+import MonCard from './MonCard'
 
 class DisplayPokemons extends Component {
   componentDidMount() {
@@ -23,14 +24,10 @@ class DisplayPokemons extends Component {
       );
     }
     return (
-      <div>
-        {/* <div className={style.photodiv}>
-          {sortPhotos.map(link => <Photo key={link.photoId} link={link} />)}
-          <button type="button" className={style.button} onClick={this.togglePhotoModal.bind(this)}>
-            {`${photos.length} PHOTOS ▷`}
-          </button>
-        </div> */}
-        check check
+      <div className="d-flex flex-wrap">
+       {allMons.map(mon => (
+         <MonCard mon={mon} key={mon.id} />
+       ))}
       </div>
     );
   }

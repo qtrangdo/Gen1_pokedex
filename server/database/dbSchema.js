@@ -3,7 +3,7 @@ module.exports = {
   CREATE TABLE pokemons (
     id SERIAL PRIMARY KEY,
     name varchar(100),
-    default_img varchar(100)
+    default_img varchar(1000)
   );
 
   CREATE TABLE pokemonData (
