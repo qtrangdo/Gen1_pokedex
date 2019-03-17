@@ -1,30 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Proptypes from 'prop-types';
 
-const MonCard = (props) => (
-  <div className="col col-sm-6 col-md-3">
-    <div className="card my-3 border border-danger card-bg">
-      <img src={props.mon.default_img} alt={props.mon.name}></img>
-      <hr/>
-      <div className="card-body">
-        <h3 className="text-center">
-          {`#${props.mon.id} ${props.mon.name.toUpperCase()}`}
-        </h3>
+class MonCard extends Component{
+  constructor (props) {
+    super(props);
+    this.state = {
+      id: props.mon.id,
+      showModal: false
+    }
+  }
+
+  onClick() {
+    const { id } = this.state
+  }
+
+  render() {
+    const { mon } = this.props;
+    return (
+      <div className="col col-sm-6 col-md-3" onClick={this.onClick.bind(this)}>
+        <div className="card my-3 border border-danger card-bg">
+          <img src={mon.default_img} alt={mon.name}></img>
+          <hr/>
+          <div className="card-body">
+            <h3 className="text-center">
+              {`#${mon.id} ${mon.name.toUpperCase()}`}
+            </h3>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-)
+    );
+  }
+}
 
+const mapStateToProps = state => (
+  {
+    allMons: state.pokemons.allMons,
+    pending: state.pokemons.pending,
+  }
+);
 
-export default MonCard;
+const mapDispatchToProps = dispatch => (
+  {
+    onRequestAllMons: () => dispatch(requestAllMons()),
+  }
+);
 
-<div class="card">
-  <div class="card-header">
-    Quote
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
-  </div>
-</div>
+MonCard.propTypes = {
+  mon: Proptypes.shape({
+    default_img: Proptypes.string.isRequired,
+    id: Proptypes.number.isRequired,
+    name: Proptypes.string.isRequired,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MonCard);
