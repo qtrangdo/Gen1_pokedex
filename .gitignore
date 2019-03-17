@@ -66,3 +66,5 @@ typings/
 # webpack build output
 bundle.js
 bundle.js.map
+bundle.js.br 
+bundle.js.gz
