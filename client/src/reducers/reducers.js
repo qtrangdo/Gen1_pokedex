@@ -21,6 +21,23 @@ const oneMonState = {
 
 export const requestAllMons = (state = allMonsState, action) => {
   switch (action.type) {
+    case REQUEST_ALLMONS_PENDING:
+      return {
+        ...state,
+        pending: true,
+      };
+    case REQUEST_ALLMONS_SUCCESS:
+      return {
+        ...state,
+        allMons: action.payload,
+        pending: false,
+      };
+    case REQUEST_ALLMONS_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+        pending: false,
+      };
     default:
       return state;
   }

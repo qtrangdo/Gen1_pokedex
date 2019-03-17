@@ -14,3 +14,5 @@ const requestAllMons = () => (dispatch) => {
     .then(data => dispatch({ type: REQUEST_ALLMONS_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: REQUEST_ALLMONS_FAILED, payload: error }));
 }
+
+export default requestAllMons;
