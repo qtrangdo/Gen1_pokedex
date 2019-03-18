@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const parser = require('body-parser');
 const expressStaticGzip = require('express-static-gzip');
-const { getAll } = require('./database/index');
+const { getAll, getOne } = require('./database/index');
 
 const app = express();
 const port = 3000;
@@ -32,6 +32,17 @@ app.use(express.static('client/dist'));
 
 app.get('/api/pokemons', (req, res) => {
   getAll((err, data) => {
+    if (err || data.length === 0) {
+      res.status(400).send('Error in getting pokemon data');
+    } else {
+      res.status(200).send(JSON.stringify(data));
+    }
+  });
+});
+
+app.get('/api/pokemons/:id', (req, res) => {
+  const {id} = req.params;
+  getOne(id, (err, data) => {
     if (err || data.length === 0) {
       res.status(400).send('Error in getting pokemon data');
     } else {

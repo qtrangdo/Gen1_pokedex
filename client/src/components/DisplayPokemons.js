@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
-import requestAllMons from '../actions/actions';
+import {requestAllMons} from '../actions/actions';
 import MonCard from './MonCard'
 
 class DisplayPokemons extends Component {

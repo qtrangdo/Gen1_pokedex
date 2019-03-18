@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
+import {requestOneMon} from '../actions/actions';
 
 class MonCard extends Component{
   constructor (props) {
     super(props);
     this.state = {
       id: props.mon.id,
-      showModal: false
     }
   }
 
   onClick() {
-    const { id } = this.state
+    const { id } = this.state;
+    this.props.onRequestOneMon(id);
   }
 
   render() {
@@ -33,16 +34,9 @@ class MonCard extends Component{
   }
 }
 
-const mapStateToProps = state => (
-  {
-    allMons: state.pokemons.allMons,
-    pending: state.pokemons.pending,
-  }
-);
-
 const mapDispatchToProps = dispatch => (
   {
-    onRequestAllMons: () => dispatch(requestAllMons()),
+    onRequestOneMon: (id) => dispatch(requestOneMon(id)),
   }
 );
 
@@ -52,6 +46,7 @@ MonCard.propTypes = {
     id: Proptypes.number.isRequired,
     name: Proptypes.string.isRequired,
   }).isRequired,
+  onRequestOneMon: Proptypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MonCard);
+export default connect(null, mapDispatchToProps)(MonCard);

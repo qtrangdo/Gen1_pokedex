@@ -17,6 +17,13 @@ const getAll = (cb) => {
     .catch(err => cb(err))
 };
 
+const getOne = (id, cb) => {
+  client.query(`SELECT * FROM pokemons, pokemondata where pokemons.id = ${id} and pokemondata.id = ${id};`)
+    .then(res => cb(null, res.rows))
+    .catch(err => cb(err))
+};
+
 module.exports = {
   getAll,
+  getOne
 }
