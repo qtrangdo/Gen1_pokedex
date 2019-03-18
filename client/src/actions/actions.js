@@ -5,6 +5,7 @@ import {
   REQUEST_ONEMON_PENDING,
   REQUEST_ONEMON_SUCCESS,
   REQUEST_ONEMON_FAILED,
+  CLOSE_MODAL
 } from './actionTypes';
 
 export const requestAllMons = () => (dispatch) => {
@@ -21,4 +22,8 @@ export const requestOneMon = (id) => (dispatch) => {
     .then(res => res.json())
     .then(data => dispatch({ type: REQUEST_ONEMON_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: REQUEST_ONEMON_FAILED, payload: error }));
+}
+
+export const closeModal = () => (dispatch) => {
+  dispatch({ type: CLOSE_MODAL });
 }

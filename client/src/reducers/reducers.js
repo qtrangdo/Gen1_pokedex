@@ -5,6 +5,7 @@ import {
   REQUEST_ONEMON_PENDING,
   REQUEST_ONEMON_SUCCESS,
   REQUEST_ONEMON_FAILED,
+  CLOSE_MODAL,
 } from '../actions/actionTypes';
 
 const allMonsState = {
@@ -41,6 +42,7 @@ const oneMonState = {
   pending: false,
   oneMon: [],
   error: '',
+  modalOn: false,
 };
 
 export const requestOneMon = (state = oneMonState, action) => {
@@ -55,6 +57,7 @@ export const requestOneMon = (state = oneMonState, action) => {
         ...state,
         oneMon: action.payload,
         pending: false,
+        modalOn: true,
       };
     case REQUEST_ONEMON_FAILED:
       return {
@@ -62,6 +65,14 @@ export const requestOneMon = (state = oneMonState, action) => {
         error: action.payload,
         pending: false,
       };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        pending: false,
+        oneMon: [],
+        error: '',
+        modalOn: false,
+      }
     default:
       return state;
   }
