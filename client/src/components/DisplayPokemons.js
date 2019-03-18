@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Proptypes from 'prop-types';
-import {requestAllMons} from '../actions/actions';
+import { requestAllMons } from '../actions/actions';
 import MonCard from './MonCard'
 
 class DisplayPokemons extends Component {
@@ -11,7 +11,7 @@ class DisplayPokemons extends Component {
   }
 
   render() {
-    const { pending, allMons } = this.props;
+    const { pending, allMons, modalOn } = this.props;
     if (pending && !allMons.length) {
       return (
         <div className="d-flex justify-content-center">
@@ -25,9 +25,9 @@ class DisplayPokemons extends Component {
     }
     return (
       <div className="d-flex flex-wrap">
-       {allMons.map(mon => (
-         <MonCard mon={mon} key={mon.id} />
-       ))}
+        {allMons.map(mon => (
+          <MonCard mon={mon} key={mon.id} />
+        ))}
       </div>
     );
   }
