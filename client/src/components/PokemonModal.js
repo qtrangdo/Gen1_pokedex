@@ -10,9 +10,8 @@ class PokemonModal extends Component {
   }
 
   displayTypes(types) {
-    console.log(types)
     return types.map(type => (
-      <span className={`mr-3 p-2 text-white font-weight-bold rounded ${type}`}>{type}</span>
+      <span className={`mr-3 p-2 text-white font-weight-bold rounded ${type}`} key={type}>{type}</span>
     ));
   }
 
