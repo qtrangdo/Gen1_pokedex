@@ -6,12 +6,14 @@ import {
   REQUEST_ONEMON_SUCCESS,
   REQUEST_ONEMON_FAILED,
   CLOSE_MODAL,
+  SET_SEARCH_FIELD
 } from '../actions/actionTypes';
 
 const allMonsState = {
   pending: false,
   allMons: [],
   error: '',
+  searchField: '',
 };
 
 export const requestAllMons = (state = allMonsState, action) => {
@@ -33,6 +35,11 @@ export const requestAllMons = (state = allMonsState, action) => {
         error: action.payload,
         pending: false,
       };
+    case SET_SEARCH_FIELD: 
+      return {
+        ...state,
+        searchField: action.payload,
+      }
     default:
       return state;
   }

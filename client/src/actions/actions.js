@@ -5,7 +5,8 @@ import {
   REQUEST_ONEMON_PENDING,
   REQUEST_ONEMON_SUCCESS,
   REQUEST_ONEMON_FAILED,
-  CLOSE_MODAL
+  CLOSE_MODAL,
+  SET_SEARCH_FIELD
 } from './actionTypes';
 
 export const requestAllMons = () => (dispatch) => {
@@ -26,4 +27,8 @@ export const requestOneMon = (id) => (dispatch) => {
 
 export const closeModal = () => (dispatch) => {
   dispatch({ type: CLOSE_MODAL });
+}
+
+export const setSearchField = (str) => (dispatch) => {
+  dispatch({ type: SET_SEARCH_FIELD, payload: str })
 }

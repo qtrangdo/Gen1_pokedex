@@ -28,7 +28,7 @@ class PokemonModal extends Component {
     const { oneMon, modalOn } = this.props;
     return (
       <div>
-        {oneMon.length && (
+        {oneMon.length > 0 && (
           <div
             className="modal"
             show={modalOn.toString()}
