@@ -23,6 +23,10 @@ h3 {
   font-size: 1.15rem;
 }
 
+.bar {
+  margin: 0 15rem 2rem 15rem;
+}
+
 img {
   height: 15rem;
   width: auto;
