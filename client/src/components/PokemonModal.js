@@ -8,11 +8,28 @@ class PokemonModal extends Component {
     const { onCloseModal } = this.props;
     onCloseModal();
   }
+
+  displayTypes(types) {
+    console.log(types)
+    return types.map(type => (
+      <span className={`mr-3 p-2 text-white font-weight-bold rounded ${type}`}>{type}</span>
+    ));
+  }
+
+  displayEvolutions(forms) {
+    let result = `${forms.shift()} ➢➢`;
+    while (forms.length) {
+      let item = forms.shift();
+      result += ` ${item} ➢➢`
+    }
+    return result.slice(0, result.length - 3);
+  }
+
   render() {
     const { oneMon, modalOn } = this.props;
     return (
       <div>
-        {modalOn && (
+        {oneMon.length && (
           <div
             className="modal"
             show={modalOn.toString()}
@@ -26,20 +43,36 @@ class PokemonModal extends Component {
             aria-labelledby="ModalStatTitle"
             aria-hidden="true"
           >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content modal-bg">
+                <div className="modal-header">
+                  <h5 className="modal-title mx-auto text-danger">{`#${oneMon[0].id} ${oneMon[0].name.toUpperCase()}`}</h5>
+                  <button type="button" className="close ml-0" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
-                  ...
+                <div className="modal-body">
+                  <div className="row">
+                    <div className="col col-md-6 col-12 text-center">
+                      <img src={oneMon[0].gif_img} alt={oneMon.name} className="mx-auto img-fluid img-responsive"></img>
+                    </div>
+                    <div className="col col-md-6 col-12">
+                      <p className="description">{oneMon[0].description}</p>
+                    </div>
+                  </div>
+                  <div className="container">
+                    {this.displayTypes(oneMon[0].type)}
+                  </div>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                <div className="modal-footer justify-content-center">
+                  <div className="row">
+                    <div className="col col-md-3 col-12 text-center text-danger">
+                      <p>EVOLUTIONS</p>
+                    </div>
+                    <div className="col col-md-9 col-12 text-primary text-center">
+                      <p>{this.displayEvolutions(oneMon[0].evolutions)}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
